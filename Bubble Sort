@@ -1,0 +1,19 @@
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        # Last i elements are already sorted, so no need to check them
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                # Swap if the element found is greater than the next element
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+# Taking user input for the array
+user_input = input("Enter numbers separated by space: ")
+arr = list(map(int, user_input.split()))  # Convert input string to list of integers
+
+# Sorting the array using Bubble Sort
+sorted_arr = bubble_sort(arr)
+
+# Displaying the sorted array
+print("Sorted array:", sorted_arr)
