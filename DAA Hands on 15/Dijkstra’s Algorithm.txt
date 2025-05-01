@@ -1,0 +1,89 @@
+// Dijkstra’s Algorithm
+import heapq
+
+def dijkstra(graph, source):
+    dist = {node: float('inf') for node in graph}
+    dist[source] = 0
+    pq = [(0, source)]
+
+    while pq:
+        current_dist, u = heapq.heappop(pq)
+        if current_dist > dist[u]:
+            continue
+        for v, weight in graph[u]:
+            if dist[u] + weight < dist[v]:
+                dist[v] = dist[u] + weight
+                heapq.heappush(pq, (dist[v], v))
+    return dist
+
+# Example graph (non-negative weights)
+graph_dijkstra = {
+    'A': [('B', 1), ('C', 4)],
+    'B': [('C', 2), ('D', 5)],
+    'C': [('D', 1)],
+    'D': []
+}
+print("Dijkstra:", dijkstra(graph_dijkstra, 'A'))
+
+// Bellman-Ford Algorithm
+def bellman_ford(graph, vertices, source):
+    dist = {v: float('inf') for v in vertices}
+    dist[source] = 0
+
+    for _ in range(len(vertices) - 1):
+        for u in graph:
+            for v, weight in graph[u]:
+                if dist[u] + weight < dist[v]:
+                    dist[v] = dist[u] + weight
+
+    # Check for negative weight cycles
+    for u in graph:
+        for v,
+
+//  Floyd-Warshall Algorithm
+
+import java.util.*;
+
+public class FloydWarshall {
+    public static int[][] floydWarshall(int[][] graph) {
+        int n = graph.length;
+        int[][] dist = new int[n][n];
+
+        // Initialize distances
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                dist[i][j] = graph[i][j];
+
+        // Core algorithm
+        for (int k = 0; k < n; k++)
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    if (dist[i][k] != Integer.MAX_VALUE && dist[k][j] != Integer.MAX_VALUE)
+                        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+
+        return dist;
+    }
+
+    // Test
+    public static void main(String[] args) {
+        final int INF = Integer.MAX_VALUE;
+        int[][] graph = {
+            {0, 5, INF, 10},
+            {INF, 0, 3, INF},
+            {INF, INF, 0, 1},
+            {INF, INF, INF, 0}
+        };
+
+        int[][] result = floydWarshall(graph);
+        System.out.println("Floyd-Warshall distance matrix:");
+        for (int[] row : result) {
+            for (int val : row)
+                System.out.print((val == INF ? "INF" : val) + "\t");
+            System.out.println();
+        }
+    }
+}
+
+
+
+
